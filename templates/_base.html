@@ -1,0 +1,60 @@
+{% extends "juice.html" %}
+
+{% block inner %}
+<main>
+    <div class="toc">
+        {% block toc %}
+        {% if section.title %}
+        {% set parent = section %}
+        {% elif page %}
+        {% set parent = get_section(path = page.ancestors | last) %}
+        {% endif %}
+        {% if parent %}
+        <div class="toc-sticky">
+            <a class="subtext" href="{{ parent.permalink }}">
+                <h2 class="toc-header">{{parent.title}}</h2>
+            </a>
+            {% for subpage in parent.pages %}
+            {% set selected = page and subpage.permalink == page.permalink %}
+            <div class="toc-item">
+                <a class="subtext {% if selected %}active{% endif %}" href="{{subpage.permalink | safe}}">{{
+                    subpage.title }}</a>
+            </div>
+            {% if page and subpage.permalink == page.permalink %}
+            {% for h in subpage.toc %}
+            <div class="toc-item-child">
+                <a class="subtext" href="{{ h.permalink | safe }}"><small>- {{ h.title }}</small></a>
+            </div>
+            {% endfor %}
+            {% endif %}
+            {% endfor %}
+        </div>
+        {% endif %}
+        {% endblock toc %}
+    </div>
+
+    <div class="content text">
+        {% block content %}
+        <div id="features" class="heading-text">Overview</div>
+        {{ section.content | safe }}
+        {% endblock content %}
+    </div>
+
+    <div class="toc"></div>
+
+    {% block sidebar %}
+    {% endblock %}
+</main>
+
+{% block footer %}
+<footer>
+    <small class="subtext">
+        <a href="https://github.com/javirk/cell_simulation">github</a>
+    </small>
+
+    <small class="subtext">
+        <a href="https://github.com/javirk/cell_simulation">help the website!</a>
+    </small>
+</footer>
+{% endblock footer %}
+{% endblock inner %}

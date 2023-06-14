@@ -1,0 +1,26 @@
+{% macro render_header() %}
+
+{% set section = get_section(path="_index.md") %}
+<div class="header-left">
+    <a href="{{ section.permalink }}">
+        <div class="logo">
+            <img width="60" height="60" src="{{ get_url(path=config.extra.juice_logo_path) }}" alt="logo">
+            {{ config.extra.juice_logo_name }}
+        </div>
+    </a>
+    <nav>
+        {% for subsection_name in section.subsections %}
+            {% set subsection = get_section(path=subsection_name) %}
+            <a class="nav-item subtitle-text" href="{{ subsection.permalink }}">{{ subsection.title }}</a>
+        {% endfor %}
+    </nav>
+</div>
+
+<nav>
+    {% if config.extra.juice_extra_menu %}
+        {% for menu in config.extra.juice_extra_menu %}
+            <a class="nav-item subtitle-text" href="{{ menu.link }}">{{ menu.title }}</a>
+        {% endfor %}
+    {% endif %}
+</nav>
+{% endmacro render_header %}

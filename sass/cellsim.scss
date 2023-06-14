@@ -1,0 +1,104 @@
+@mixin phone {
+    @media (max-width: 767px) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media (min-width: 768px) and (max-width: 1023px) {
+        @content;
+    }
+}
+
+@mixin mobile {
+    @media (max-width: 1023px) {
+        @content;
+    }
+}
+
+@mixin desktop {
+    @media (min-width: 1024px) {
+        @content;
+    }
+}
+
+.hero-parent {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    @include mobile {
+        flex-flow: column;
+        justify-content: flex-start;
+    }
+    @include desktop {
+        flex-flow: row;
+        justify-content: space-evenly;
+    }
+}
+.hero-text {
+    display: flex;
+    @include mobile {
+        width: 100%;
+        order: 2;
+    }
+    @include desktop {
+        width: 30%;
+    }
+    justify-content: center;
+    text-align: center;
+    .tagline {
+        @include desktop {
+            width: 80%;
+        }
+    }
+}
+.hero-video {
+    display: flex;
+    @include mobile {
+        width: 100%;
+        order: 1;
+    }
+    @include desktop {
+        width: 70%;
+    }
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    margin: 8px;
+    @include phone {
+        flex-direction: column;
+    } 
+}
+
+body {
+    align-content: stretch;
+}
+
+.logo {
+    margin-left: 0px;
+    margin-right: 20px;
+}
+
+.logo img {
+    margin-left: 0px;
+}
+
+.hero {
+    height: 100%;
+    flex-grow: 1;
+    @include mobile {
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+    @include desktop {
+        align-items: flex-start;
+    }
+}
+
+.pos-absolute {
+    position: unset;
+}

@@ -1,0 +1,26 @@
+{% extends "juice.html" %}
+
+{% block head %}
+{% endblock head %}
+
+{% block hero %}
+<div class="hero-parent">
+    <div class="hero-text">
+        <h1 class="tagline">
+            Realistic cell simulation library written in rust.
+        </h1>
+    </div>
+
+    <video autoplay muted loop disableRemotePlayback class="hero-video">
+        <source src="" type="video/mp4">
+    </video>
+</div>
+{% endblock hero %}
+
+{% block favicon %}
+<link rel="icon" type="image/png" href="{{ get_url(path='logo.png') }}">
+{% endblock favicon %}
+
+{% block content %}
+
+{% endblock content %}
